@@ -1,4 +1,4 @@
-<%= form_for(@sandwich) do |f| %>
+<%= form_for @sandwich, :html => { :multipart => true } do |f| %>
   <% if @sandwich.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@sandwich.errors.count, "error") %> prohibited this sandwich from being saved:</h2>
@@ -19,6 +19,11 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
+  <div class="field">
+     <%= f.label :sandwich_image %><br>
+     <%= f.file_field :sandwich_image %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,28 +1,20 @@
 class SandwichesController < ApplicationController
   before_action :set_sandwich, only: [:show, :edit, :update, :destroy]
 
-  # GET /sandwiches
-  # GET /sandwiches.json
   def index
     @sandwiches = Sandwich.all
   end
 
-  # GET /sandwiches/1
-  # GET /sandwiches/1.json
   def show
   end
 
-  # GET /sandwiches/new
   def new
     @sandwich = Sandwich.new
   end
 
-  # GET /sandwiches/1/edit
   def edit
   end
 
-  # POST /sandwiches
-  # POST /sandwiches.json
   def create
     @sandwich = Sandwich.new(sandwich_params)
 
@@ -37,8 +29,6 @@ class SandwichesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /sandwiches/1
-  # PATCH/PUT /sandwiches/1.json
   def update
     respond_to do |format|
       if @sandwich.update(sandwich_params)
@@ -51,8 +41,6 @@ class SandwichesController < ApplicationController
     end
   end
 
-  # DELETE /sandwiches/1
-  # DELETE /sandwiches/1.json
   def destroy
     @sandwich.destroy
     respond_to do |format|
@@ -62,12 +50,10 @@ class SandwichesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_sandwich
       @sandwich = Sandwich.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def sandwich_params
       params.require(:sandwich).permit(:name, :description)
     end

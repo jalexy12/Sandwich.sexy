@@ -49,9 +49,9 @@ end
 
 gem 'devise'
 gem 'react-rails', '~> 1.0'
-gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
 gem 'puma'
 gem 'actioncable', '~> 0.1.0'
 gem 'acts_as_votable'
 gem "paperclip", "~> 4.3"
+gem 'materialize-sass'
