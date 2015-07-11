@@ -55,6 +55,6 @@ class SandwichesController < ApplicationController
     end
 
     def sandwich_params
-      params.require(:sandwich).permit(:name, :description)
+      params.require(:sandwich).permit(:name, :description, :sandwich_image)
     end
 end
