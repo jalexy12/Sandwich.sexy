@@ -16,7 +16,7 @@
       <tr>
         <td><%= sandwich.name %></td>
         <td><%= sandwich.description %></td>
-        <td><%= image_tag(sandwich.sandwich_image, class: "sandwich-image") %>
+        <td><%= image_tag(sandwich.sandwich_image, class: "sandwich-image ") %>
         <td><%= link_to 'Show', sandwich %></td>
         <td><%= link_to 'Edit', edit_sandwich_path(sandwich) %></td>
         <td><%= link_to 'Destroy', sandwich, method: :delete, data: { confirm: 'Are you sure?' } %></td>
