@@ -11,6 +11,10 @@
  * file per style scope.
  *
  *= require_tree .
- *= require materialize
  *= require_self
  */
+
+
+.home-container{
+	height: 100vh;
+}

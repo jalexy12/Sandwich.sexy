@@ -30,7 +30,7 @@ gem 'puma'
 gem 'actioncable', '~> 0.1.0'
 gem 'acts_as_votable'
 gem "paperclip", "~> 4.3"
-gem 'materialize-sass'
+gem 'twitter-bootstrap-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
