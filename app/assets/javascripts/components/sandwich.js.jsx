@@ -1,9 +1,7 @@
-'use strict'
-
 class Sandwich extends React.Component{
 	render(){
 		return(
-			<div>
+			<div className="center-align">
 				<div className="row">
 					{this.props.name}
 				</div>
