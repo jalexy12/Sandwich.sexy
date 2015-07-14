@@ -7,7 +7,7 @@ class Sandwich extends React.Component{
 	render(){
 		console.log(this.props)
 		return(
-			<div className="container center-align">
+			<div className="text-center">
 				<div className="row">
 					<h3>
 					  {this.props.name}
@@ -22,11 +22,12 @@ class Sandwich extends React.Component{
 					</p>
 				</div>
 				<div className="row">
-					<div className="col s2">
-						<a href="#" className="btn no-button">Nope</a>
+				    <div className="col-sm-2"></div>
+					<div className="col-sm-4">
+						<button href="#" className="btn btn-danger no-button">Nope</button>
 					</div>
-					<div className="col-sm-1">
-						<a href="#" className="btn yes-button">Yep</a>
+					<div className="col-sm-4">
+						<button href="#" className="btn btn-primary yes-button">Yep</button>
 					</div>
 				</div>
 			</div>

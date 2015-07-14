@@ -34,7 +34,7 @@ class SandwichSlider extends React.Component{
 			return <Sandwich name={sandwich.name} sandwich_image={sandwich.sandwich_image} description={sandwich.description} />
 		})
 		return(
-		<div> 
+		<div className="row"> 
 		  {sandwiches}
 		</div>
 		)
