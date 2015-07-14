@@ -1,3 +1,5 @@
+'use strict'
+
 class Sandwich extends React.Component{
 	render(){
 		return(
@@ -9,7 +11,12 @@ class Sandwich extends React.Component{
 					<img src={this.props.sandwich_image} />
 				</div>
 				<div className="row">
-					{this.props.description}
+					<div className="col s6">
+						<button className="btn">Yep</button>
+					</div>
+					<div className="col s6">
+						<button className="btn">Nope</button>
+					</div>
 				</div>
 			</div>
 			)

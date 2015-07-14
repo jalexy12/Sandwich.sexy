@@ -1,6 +1,10 @@
 class SandwichesController < ApplicationController
   before_action :set_sandwich, only: [:show, :edit, :update, :destroy]
 
+  def home
+    
+  end
+
   def index
     @sandwiches = Sandwich.all
   end
