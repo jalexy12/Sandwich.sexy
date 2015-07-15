@@ -5,7 +5,6 @@ class Sandwich extends React.Component{
 	}
 
 	render(){
-		console.log(this.props)
 		return(
 			<div className="text-center">
 				<div className="row">
@@ -14,7 +13,9 @@ class Sandwich extends React.Component{
 					</h3>
 				</div>
 				<div className="row">
+				  <div className="col-sm-12 col-lg-6 col-lg-offset-3">
 					<img className="sandwich-image" src={this.props.sandwich_image} />
+				  </div>
 				</div>
 				<div className="row">
 					<p className="center-align sandwich-description">
@@ -27,7 +28,7 @@ class Sandwich extends React.Component{
 						<button href="#" className="btn btn-danger no-button">Nope</button>
 					</div>
 					<div className="col-sm-4">
-						<button href="#" className="btn btn-primary yes-button">Yep</button>
+						<button href="#" onClick={this.props.next} className="btn btn-primary yes-button">Yep</button>
 					</div>
 				</div>
 			</div>

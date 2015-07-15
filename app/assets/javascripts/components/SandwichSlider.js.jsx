@@ -2,9 +2,16 @@ class SandwichSlider extends React.Component{
 
 	constructor(props){
 		super();
-		// this._like = this..bind(this)
+		this.nextSandwich = this.nextSandwich.bind(this)
+
+		var sandwich = {
+			name: "Test Sandwich",
+			description: "This is just a test sandwich",
+			sandwich_image: "https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97325&w=325&h=325"
+		}
+
 		this.state = {
-			sandwiches: [],
+			sandwiches: [sandwich],
 			currentSandwich: 0
 		}
 	}
@@ -14,7 +21,8 @@ class SandwichSlider extends React.Component{
 		$.ajax({
 			url: '/sandwiches.json',
 			success: function (data) {
-				this.setState({
+				console.log(data)
+				that.setState({
 					sandwiches: data
 				})
 			}.bind(this),
@@ -24,19 +32,26 @@ class SandwichSlider extends React.Component{
 		});	
 	}
 
+	nextSandwich(){
+		console.log("Called")
+		this.setState({
+			currentSandwich: this.state.currentSandwich + 1
+		})
+	}
+
 	componentDidMount() {
 		this.getSandwiches();
 	}
 
 	render(){
-		var sandwiches = this.state.sandwiches.map(sandwich => {
-			console.log(sandwich);
-			return <Sandwich name={sandwich.name} sandwich_image={sandwich.sandwich_image} description={sandwich.description} />
-		})
+		var sandwich = this.state.sandwiches[this.state.currentSandwich]
+		// console.log(this.state)
 		return(
-		<div className="row"> 
-		  {sandwiches}
-		</div>
-		)
+			   <Sandwich 
+			   		name={sandwich.name} 
+			   		sandwich_image={sandwich.sandwich_image} 
+			   		description={sandwich.description} 
+			   		next={this.nextSandwich}
+			   		 />)
 	}
 }
