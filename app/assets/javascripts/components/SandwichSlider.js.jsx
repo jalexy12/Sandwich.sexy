@@ -33,7 +33,6 @@ class SandwichSlider extends React.Component{
 	}
 
 	nextSandwich(){
-		console.log("Called")
 		this.setState({
 			currentSandwich: this.state.currentSandwich + 1
 		})
@@ -45,7 +44,6 @@ class SandwichSlider extends React.Component{
 
 	render(){
 		var sandwich = this.state.sandwiches[this.state.currentSandwich]
-		// console.log(this.state)
 		return(
 			   <Sandwich 
 			   		name={sandwich.name} 

@@ -16,9 +16,9 @@ class Sandwich extends React.Component{
 			    			<button className="btn btn-default btn-circle">
 			    			  <i className="fa fa-share"></i>
 			    			</button>
-			    			<span className="sandwich-heading">
+			    			<h3 className="sandwich-heading">
 			    			  {this.props.name}
-			    			</span>
+			    			</h3>
 			    			<button className="btn btn-default btn-circle btn-comment">
 			    			  <i className="fa fa-comment-o"></i>
 			    			</button>
