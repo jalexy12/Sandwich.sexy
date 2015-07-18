@@ -1,0 +1,23 @@
+{
+  "name": "sandwichdotsexy",
+  "version": "1.0.0",
+  "description": "Tinder for sandwiches",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jalexy12/Sandwich.sexy.git"
+  },
+  "author": "Josh Alexy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jalexy12/Sandwich.sexy/issues"
+  },
+  "homepage": "https://github.com/jalexy12/Sandwich.sexy#readme",
+  "dependencies": {
+    "browserify": "^11.0.0",
+    "browserify-incremental": "^3.0.1"
+  }
+}
