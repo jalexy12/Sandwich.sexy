@@ -37,7 +37,6 @@ class Sandwich extends React.Component{
 					<div className="row">
 						<p className="center-align sandwich-description">
 						  {this.props.description}
-						  <span className="glyphicon glyphicon-heart" aria-hidden="true"></span>
 						</p>
 					</div>
 				</div>

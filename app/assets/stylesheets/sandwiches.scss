@@ -27,6 +27,10 @@
 	max-height: 321px;
 }
 
+.sandwich-nav-row *{
+  display: inline;
+}
+
 .sandwich-heading{
   font-size: 2em;
   margin-left: 12%;
@@ -44,12 +48,12 @@
 }
 
 .sandwich-description{
-	font-size: 1.2em;
+  margin-top: 2%;
+	font-size: 1.5em;
 }
 
 .sandwich-wrapper{
-	margin-top: 7vh;
-  margin: auto;
+  margin: 10vh auto;
 }
 
 @media (min-width: 768px) {

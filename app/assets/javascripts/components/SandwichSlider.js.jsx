@@ -53,3 +53,27 @@ class SandwichSlider extends React.Component{
 			   		 />)
 	}
 }
+
+class App extends React.Component{
+	render() {
+		return (
+		  <div>
+			<Post name="Josh" post="blah blah blah" />
+			<CommentBox />
+		  </div>
+		);
+	}
+}
+
+class CommentBox{
+
+	
+	render() {
+		return (
+			<div>
+				<ListOfComments />
+				<CommentForm />
+			</div>
+		);
+	}
+}
