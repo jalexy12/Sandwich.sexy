@@ -1,5 +1,3 @@
-require 'resque/server'
-
 Rails.application.routes.draw do
   #statics
   get '/' => "sandwiches#home"
@@ -12,6 +10,5 @@ Rails.application.routes.draw do
   get '/challenge_callback' => "sandwiches#from_instagram"
   post '/challenge_callback' => "sandwiches#new_sandwich"
   #resque
-  mount Resque::Server.new, at: "/resque"
 end
 

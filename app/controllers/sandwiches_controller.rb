@@ -11,7 +11,7 @@ class SandwichesController < ApplicationController
 
   def new_sandwich
     ap params
-    Resque.enqueue(GetSandwiches)
+    InstagramSandwichJob.perform_later("Performed the job")
     render :nothing => true
   end
   def index

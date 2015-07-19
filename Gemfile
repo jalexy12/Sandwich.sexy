@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', github: "rails/rails"
-gem 'sprockets-rails', github: "rails/sprockets-rails"
+gem 'sprockets-rails'
 gem 'arel', github: "rails/arel"
 gem 'actioncable', github: "rails/actioncable"
 gem 'jquery-rails'
@@ -10,17 +10,16 @@ gem 'pg'
 gem 'puma'
 
 gem 'devise'
-gem 'react-rails', '~> 1.0'
+gem 'react-rails', github: "reactjs/react-rails"
 gem 'therubyracer'
 gem 'acts_as_votable'
 gem "paperclip", "~> 4.3"
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem "font-awesome-rails"
 gem 'omniauth'
 gem 'omniauth-instagram'
 gem 'omniauth-facebook'
 gem 'instagram'
-
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
