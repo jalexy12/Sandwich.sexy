@@ -1,8 +1,6 @@
 class SandwichesController < ApplicationController
   before_action       :set_sandwich, only: [:show, :edit, :update, :destroy]
-  before_action       :get_current_user, only: [:new_sandwich]
-  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
-
+  skip_before_action :verify_authenticity_token
   def home
   end
 
@@ -11,7 +9,8 @@ class SandwichesController < ApplicationController
   end
 
   def new_sandwich
-    InstagramSandwichJob.perform_later("Performed the job", @current_user.token)
+    user = User.first
+    InstagramSandwichJob.perform_later("Performed the job", user.token)
     render :nothing => true
   end
   def index
@@ -64,9 +63,6 @@ class SandwichesController < ApplicationController
 
   private
 
-    def get_current_user
-      @current_user = current_user
-    end
     def set_sandwich
       @sandwich = Sandwich.find(params[:id])
     end

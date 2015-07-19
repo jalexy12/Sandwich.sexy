@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150718233229) do
+ActiveRecord::Schema.define(version: 20150719033042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150718233229) do
     t.string   "sandwich_image_content_type"
     t.integer  "sandwich_image_file_size"
     t.datetime "sandwich_image_updated_at"
+    t.string   "ig_id"
   end
 
   create_table "tag_infos", force: :cascade do |t|
@@ -65,9 +66,8 @@ ActiveRecord::Schema.define(version: 20150718233229) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "token"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
