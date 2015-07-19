@@ -1,10 +1,19 @@
 class SandwichesController < ApplicationController
-  before_action :set_sandwich, only: [:show, :edit, :update, :destroy]
+  before_action       :set_sandwich, only: [:show, :edit, :update, :destroy]
+  skip_before_filter  :verify_authenticity_token, only: [:new_sandwich]
 
   def home
-    
   end
 
+  def from_instagram
+    render json: params["hub.challenge"]
+  end
+
+  def new_sandwich
+    ap params
+    Resque.enqueue(GetSandwiches)
+    render :nothing => true
+  end
   def index
     @sandwiches = Sandwich.all
   end

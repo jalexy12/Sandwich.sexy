@@ -9,6 +9,7 @@
       <span class="icon-bar"></span>
     </button>
     <a class="navbar-brand" href="#">Brand</a>
+    <%= link_to('Logout', destroy_user_session_path, method: 'delete', class: "navbar-brand") %>
   </div>
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -34,6 +35,7 @@
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
+
   <!-- <div class="sandwich-wrapper col-sm-8"> -->
     <%= react_component 'SandwichSlider' %>
   <!-- </div> -->

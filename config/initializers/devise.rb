@@ -8,7 +8,15 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'd1fdbb1de9bbf6d0ff2e660fff7f7824bc24d373b361121636bda85abae0be0cc2f166da1df626557004e56d4b40ab392b920de117f7e99c0fb15498648a6ec7'
   config.omniauth :instagram, "268a5728782344fa808473c7692819c5", "7ffe80dfd2b643e382faf55fe7c2215f"
+ # curl -X DELETE 'https://api.instagram.com/v1/subscriptions?client_secret=7ffe80dfd2b643e382faf55fe7c2215f&object=all&client_id=268a5728782344fa808473c7692819c5'
 
+  # curl -F 'client_id=268a5728782344fa808473c7692819c5' \
+  #      -F 'client_secret=7ffe80dfd2b643e382faf55fe7c2215f' \
+  #      -F 'object=tag' \
+  #      -F 'aspect=media' \
+  #      -F 'object_id=sandwich' \
+  #      -F 'callback_url=http://3a425bb1.ngrok.com/challenge_callback' \
+  #      https://api.instagram.com/v1/subscriptions
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
