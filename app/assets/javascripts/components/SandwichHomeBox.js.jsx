@@ -1,9 +1,23 @@
 class SandwichHomeBox extends React.Component{
 	constructor(props){
 		super()
+		this.getSandwiches = this.getSandwiches.bind(this)
 		this.state = {
-			sandwiches: props.sandwiches
+			sandwiches: []
 		}
+	}
+
+	getSandwiches(){
+		$.ajax({
+			url: '/sandwiches.json',
+			type: 'get',
+			success: (data) => {
+				this.setState({sandwiches: data})
+			},
+			error: () => {
+				console.log("Error")
+			}
+		})
 	}
 
 	renderSandwiches(){
@@ -21,9 +35,13 @@ class SandwichHomeBox extends React.Component{
 		})
 	}
 
+	componentDidMount() {
+		this.getSandwiches();
+	}
+
 	render(){
 		return(
-			<div> 
+			<div className="row home-sandwich"> 
 				{this.renderSandwiches()}
 			</div>
 			)
