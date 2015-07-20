@@ -10,11 +10,19 @@ class SandwichesController < ApplicationController
 
   def new_sandwich
     user = User.first
-    InstagramSandwichJob.perform_later("Performed the job", user.token)
+    last_sandwich = Sandwich.last.ig_id
+    InstagramSandwichJob.perform_later(last_sandwich, user.token)
     render :nothing => true
   end
   def index
-    @sandwiches = Sandwich.all
+    @sandwiches = Sandwich.all.page(params[:page])
+    @meta = {
+        :current_page => @sandwiches.current_page,
+        :next_page => @sandwiches.next_page,
+        :prev_page => @sandwiches.prev_page,
+        :total_pages => @sandwiches.total_pages,
+        :total_count => @sandwiches.total_count
+      }
   end
 
   def show

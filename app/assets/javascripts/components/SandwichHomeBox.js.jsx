@@ -2,17 +2,30 @@ class SandwichHomeBox extends React.Component{
 	constructor(props){
 		super()
 		this.getSandwiches = this.getSandwiches.bind(this)
+		this.handleOnPaginate = this.handleOnPaginate.bind(this)
+		this.getPeopleDone = this.getPeopleDone.bind(this)
 		this.state = {
-			sandwiches: []
+			didFetchData: false,
+			sandwiches: [],
+			meta: {
+				total_pages: 0,
+				current_page: 1,
+				total_count: 0,
+			},
+			fetchData: {
+				page: 1,
+			}
 		}
 	}
 
 	getSandwiches(){
+		console.log("fetchData", this.state.fetchData)
 		$.ajax({
 			url: '/sandwiches.json',
 			type: 'get',
+			data: this.state.fetchData,
 			success: (data) => {
-				this.setState({sandwiches: data})
+				this.getPeopleDone(data)
 			},
 			error: () => {
 				console.log("Error")
@@ -20,11 +33,23 @@ class SandwichHomeBox extends React.Component{
 		})
 	}
 
+	getPeopleDone(data){
+		this.setState({
+			didFetchData: true,
+			sandwiches: data.sandwiches, 
+			meta: data.meta
+		})
+	}
+
+	handleOnPaginate(pageNumber){
+		console.log(pageNumber)
+		this.state.fetchData.page = pageNumber
+		this.setState(this.state)
+		this.getSandwiches();
+	}
+
 	renderSandwiches(){
-		let sorted_sandwiches = this.state.sandwiches.sort((sandwich1, sandwich2) =>{
-			Number(sandwich2.created_at) - Number(sandwich1.created_at)
-		});
-		return sorted_sandwiches.map((sandwich) =>{
+		return this.state.sandwiches.map((sandwich) =>{
 			return <SandwichHome 
 					key={sandwich.id}
 				    id={sandwich.id}
@@ -41,9 +66,20 @@ class SandwichHomeBox extends React.Component{
 
 	render(){
 		return(
-			<div className="row home-sandwich"> 
-				{this.renderSandwiches()}
+			 <div>
+			 	<div className="row text-center">
+					<PaginatorSection totalPages={this.state.meta.total_pages} currentPage={this.state.meta.current_page} onPaginate={this.handleOnPaginate}/>
+				</div>
+				<div className="row home-sandwich">
+				 {this.renderSandwiches()}
+				</div>
+				<div className="row text-center">
+					<PaginatorSection totalPages={this.state.meta.total_pages} currentPage={this.state.meta.current_page} onPaginate={this.handleOnPaginate}/>
+				</div>
 			</div>
+				
 			)
 	}
 }
+
+

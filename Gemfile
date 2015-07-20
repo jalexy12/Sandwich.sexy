@@ -27,6 +27,7 @@ gem 'coffee-rails', github: "rails/coffee-rails"
 gem 'turbolinks'
 gem 'momentjs-rails'
 gem 'kaminari'
+gem 'coffee-react'
 
 gem 'jbuilder', '~> 2.0'
 
