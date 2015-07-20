@@ -22,7 +22,7 @@ class SandwichHomeBox extends React.Component{
 
 	renderSandwiches(){
 		let sorted_sandwiches = this.state.sandwiches.sort((sandwich1, sandwich2) =>{
-			sandwich1.created_at - sandwich2.created_at
+			Number(sandwich2.created_at) - Number(sandwich1.created_at)
 		});
 		return sorted_sandwiches.map((sandwich) =>{
 			return <SandwichHome 
