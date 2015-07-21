@@ -10,7 +10,7 @@ class SandwichesController < ApplicationController
 
   def new_sandwich
     user = User.first
-    last_sandwich = Sandwich.last.ig_id
+    last_sandwich = Sandwich.last.ig_id.to_s[0..18] 
     InstagramSandwichJob.perform_later(last_sandwich, user.token)
     render :nothing => true
   end
