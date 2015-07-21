@@ -31,7 +31,7 @@ class SandwichSlider extends React.Component{
 	}
 
 	nextSandwich(){
-		if (this.state.currentSandwich < this.state.maxSandwiches){
+		if (this.state.currentSandwich < this.state.maxSandwiches - 1){
 			this.setState({ currentSandwich: this.state.currentSandwich + 1 })
 		} else{
 			this.handleOnOutOfSandwiches();
