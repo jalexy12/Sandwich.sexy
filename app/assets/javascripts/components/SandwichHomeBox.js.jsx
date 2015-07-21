@@ -3,7 +3,7 @@ class SandwichHomeBox extends React.Component{
 		super()
 		this.getSandwiches = this.getSandwiches.bind(this)
 		this.handleOnPaginate = this.handleOnPaginate.bind(this)
-		this.getPeopleDone = this.getPeopleDone.bind(this)
+		this.getSandwichesDone = this.getSandwichesDone.bind(this)
 		this.state = {
 			didFetchData: false,
 			sandwiches: [],
@@ -14,7 +14,7 @@ class SandwichHomeBox extends React.Component{
 			},
 			fetchData: {
 				page: 1,
-			}
+			},
 		}
 	}
 
@@ -25,15 +25,16 @@ class SandwichHomeBox extends React.Component{
 			type: 'get',
 			data: this.state.fetchData,
 			success: (data) => {
-				this.getPeopleDone(data)
+				this.getSandwichesDone(data)
 			},
 			error: () => {
 				console.log("Error")
 			}
 		})
 	}
+	
 
-	getPeopleDone(data){
+	getSandwichesDone(data){
 		this.setState({
 			didFetchData: true,
 			sandwiches: data.sandwiches, 
@@ -42,6 +43,7 @@ class SandwichHomeBox extends React.Component{
 	}
 
 	handleOnPaginate(pageNumber){
+		console.log(pageNumber)
 		this.state.fetchData.page = pageNumber
 		this.setState(this.state)
 		this.getSandwiches();
@@ -49,13 +51,20 @@ class SandwichHomeBox extends React.Component{
 
 	renderSandwiches(){
 		return this.state.sandwiches.map((sandwich) =>{
-			return (<SandwichHome 
+			return (
+				<div>
+				   <SandwichHome 
 					key={sandwich.id}
 				    id={sandwich.id}
 				    sandwich_image={sandwich.sandwich_image}
 				    description={sandwich.description}
-				    created_at={sandwich.created_at} 
-				   />)
+				    created_at={sandwich.created_at}
+				    sandwiches={this.state.sandwiches} 
+				    totalPages={this.state.meta.total_pages}
+				    currentPage={this.state.meta.current_page}
+				    onPaginate={this.handleOnPaginate}
+				   />
+				  </div>)
 				 
 		})
 	}

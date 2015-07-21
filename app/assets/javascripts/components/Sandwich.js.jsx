@@ -2,13 +2,6 @@ class Sandwich extends React.Component{
 
 	constructor(props){
 		super();
-		this.state = {
-			modalIsShowing: false
-		}
-	}
-
-	toggleModalVisibility(){
-
 	}
 
 	render(){
@@ -47,17 +40,6 @@ class Sandwich extends React.Component{
 						</p>
 					</div>
 				</div>
-				<Modal
-				    visible={ this.state.modalIsShowing }
-				    closable={ true }
-				    onShow={ this.setState({modalIsShowing: true}) }
-				    onHide={ this.setState({modalIsShowing: false}) }>
-				    <header>
-				        <h1>Your Modal</h1>
-				    </header>
-
-				    <p>Hello there</p>
-				</Modal>
 			</div>
 			)
 	}

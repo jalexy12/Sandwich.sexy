@@ -1,8 +1,16 @@
+function arrayObjectIndexOf(myArray, searchTerm, property) {
+    for(var i = 0, len = myArray.length; i < len; i++) {
+        if (myArray[i][property] === searchTerm) return i;
+    }
+    return -1;
+}
+
 class SandwichSlider extends React.Component{
 
 	constructor(props){
 		super();
 		this.nextSandwich = this.nextSandwich.bind(this)
+		// console.log(props)
 
 		var sandwich = {
 			name: "Test Sandwich",
@@ -11,35 +19,24 @@ class SandwichSlider extends React.Component{
 		}
 
 		this.state = {
-			sandwiches: [sandwich],
-			currentSandwich: 0
+			sandwiches: props.sandwiches,
+			currentSandwich: arrayObjectIndexOf(props.sandwiches, props.startingSandwich, "id"),
+			maxSandwiches: props.sandwiches.length,
 		}
 	}
 
-	getSandwiches(){
-		var that = this;
-		$.ajax({
-			url: '/sandwiches.json',
-			success: function (data) {
-				console.log(data)
-				that.setState({
-					sandwiches: data
-				})
-			}.bind(this),
-			error: function(xhr, status, err){
-				console.error(this.props.url, status, err.toString());
-			}.bind(this)
-		});	
+	handleOnOutOfSandwiches(){
+		console.log(this.props.currentPage)
+		this.props.onPaginate(this.props.currentPage + 1)
 	}
 
 	nextSandwich(){
-		this.setState({
-			currentSandwich: this.state.currentSandwich + 1
-		})
-	}
-
-	componentDidMount() {
-		this.getSandwiches();
+		if (this.state.currentSandwich < this.state.maxSandwiches){
+			this.setState({ currentSandwich: this.state.currentSandwich + 1 })
+		} else{
+			this.handleOnOutOfSandwiches();
+		}
+		
 	}
 
 	render(){
@@ -54,26 +51,3 @@ class SandwichSlider extends React.Component{
 	}
 }
 
-class App extends React.Component{
-	render() {
-		return (
-		  <div>
-			<Post name="Josh" post="blah blah blah" />
-			<CommentBox />
-		  </div>
-		);
-	}
-}
-
-class CommentBox{
-
-	
-	render() {
-		return (
-			<div>
-				<ListOfComments />
-				<CommentForm />
-			</div>
-		);
-	}
-}

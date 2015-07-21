@@ -1,7 +1,14 @@
 class SandwichHome extends React.Component{
 	constructor(props){
-		super()
+		super();
+		this.state = {
+			modalIsShowing: false,
+		}
 	}
+	toggleModalVisibility(){
+		this.setState({modalIsShowing: !this.state.modalIsShowing})
+	}
+
 
 	render(){
 		return(
@@ -13,6 +20,18 @@ class SandwichHome extends React.Component{
 				<p className="home-sandwich-description">
 					{this.props.description}
 				</p>
+				<button onClick={this.toggleModalVisibility.bind(this)} className="btn btn-primary">Vote</button>
+				<Modal
+				    visible={ this.state.modalIsShowing }
+				    closable={ true }
+				    // onShow={  }
+				    onHide={ this.toggleModalVisibility.bind(this) }
+				    >
+				    <SandwichSlider startingSandwich={this.props.id}
+							        currentPage={this.props.currentPage}
+							        onPaginate={this.props.onPaginate}
+							        sandwiches={this.props.sandwiches}/>
+				</Modal>
 			</div>
 			)
 	}
