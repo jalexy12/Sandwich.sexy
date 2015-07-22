@@ -11,6 +11,7 @@ class SandwichSlider extends React.Component{
 		super();
 		this.nextSandwich = this.nextSandwich.bind(this)
 		this.renderComments = this.renderComments.bind(this)
+		this.renderSandwich = this.renderSandwich.bind(this)
 
 		var sandwich = {
 			name: "Test Sandwich",
@@ -27,11 +28,14 @@ class SandwichSlider extends React.Component{
 	}
 
 	renderComments(){
-		this.setState({route: "comments"})
+		this.setState({ route: "comments" })
+	}
+
+	renderSandwich(){
+		this.setState({ route: "sandwich" })
 	}
 
 	handleOnOutOfSandwiches(){
-		console.log(this.props.currentPage)
 		this.props.onPaginate(this.props.currentPage + 1)
 	}
 
@@ -56,7 +60,7 @@ class SandwichSlider extends React.Component{
 		   		 />)
 						   		
 		}else{
-			return(<CommentBox url={'/sandwiches/' + sandwich.id + '/comments/'} pollInterval={3000} />)
+			return(<CommentBox url={'/sandwiches/' + sandwich.id + '/comments/'} onSandwichView={this.renderSandwich} pollInterval={3000} />)
 		}
 			  
 	}

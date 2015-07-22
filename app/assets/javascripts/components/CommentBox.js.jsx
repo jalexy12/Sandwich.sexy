@@ -40,6 +40,7 @@ var CommentBox = React.createClass({
   render: function() {
     return (
       <div className="commentBox">
+        <button onClick={this.props.onSandwichView}>Back to sandwiches</button>
         <h1>Comments</h1>
         <CommentList data={this.state.data} />
         <CommentForm onCommentSubmit={this.handleCommentSubmit} />

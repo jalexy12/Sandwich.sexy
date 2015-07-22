@@ -33,11 +33,10 @@ class SandwichHome extends React.Component{
 				    				     onPaginate={this.props.onPaginate}
 				    				      sandwiches={this.props.sandwiches}/>
 				    }
-				    commentBox={<CommentBox url={"/sandwiches/" + this.props.id + "/comments"} pollInterval={3000} />}
+				    commentBox={<CommentBox url={"/sandwiches/" + this.props.id + "/comments"} chagepollInterval={3000} />}
 				    onHide={ this.toggleModalVisibility.bind(this) }
 				    >
 				    <header>
-				    	home-sandwich-image
 				    </header>
 				    <p>
 				    

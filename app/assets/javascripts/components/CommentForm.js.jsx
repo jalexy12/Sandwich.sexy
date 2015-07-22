@@ -1,22 +1,23 @@
 var CommentForm = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
-    var author = React.findDOMNode(this.refs.author).value.trim();
     var text = React.findDOMNode(this.refs.text).value.trim();
-    if (!text || !author) {
+    if (!text) {
       return;
     }
-    this.props.onCommentSubmit({author: author, text: text});
-    React.findDOMNode(this.refs.author).value = '';
+    this.props.onCommentSubmit({text: text});
     React.findDOMNode(this.refs.text).value = '';
   },
   render: function() {
     return (
-      <form className="commentForm" onSubmit={this.handleSubmit}>
-        <input type="text" placeholder="Your name" ref="author" />
-        <input type="text" placeholder="Say something..." ref="text" />
-        <input type="submit" value="Post" />
-      </form>
+      <div className="row">
+        <form className="commentForm" onSubmit={this.handleSubmit}>
+           <div className="form-group">
+            <input type="text" placeholder="Say something..." ref="text" />
+           </div>
+            <input type="submit" value="Post" />
+        </form>
+      </div>
     );
   }
 });
