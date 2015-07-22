@@ -17,11 +17,26 @@ class PaginatorSection extends React.Component{
   render(){
     if (this.props.totalPages > 1) {
       return ( 
-       <ul className="pagination">
-        {this.pagination()}
-      </ul>)
+      <nav>
+         <ul className="pagination">
+           <li>
+             <a href="#" aria-label="Previous">
+               <span aria-hidden="true">&laquo;</span>
+             </a>
+           </li>
+          {this.pagination()}
+          <li>
+            <a href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+         </ul>
+       </nav>)
     }else{
         return(<div>&nbsp;</div>)
     }
   }
 }
+
+    
+    

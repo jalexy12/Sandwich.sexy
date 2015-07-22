@@ -29,12 +29,12 @@
 
 }
 
-.home-sandwich-box{
-  margin-right: 2%;
-  margin-left: 2%;
-  margin-bottom: 2%; 
-  margin-top: 2%;
-}
+ .home-sandwich-box{
+     // margin-right: 1%;
+     // margin-left: 1%;
+     margin-bottom: 2%; 
+     margin-top: 2%;
+ }
 .home-sandwich-description{
   height: 5vh;
   font-size: 1.5rem;
@@ -67,6 +67,8 @@
 
 .sandwich-nav-row *{
   display: inline;
+  margin-bottom: 2%;
+  margin-top: 1%;
 }
 
 .sandwich-heading{
@@ -90,9 +92,10 @@
 	font-size: 1.5em;
 }
 
-.sandwich-wrapper{
-  margin: 10vh auto;
-}
+
+// .sandwich-wrapper{
+//   margin: 10vh auto;
+// }
 
 @media (min-width: 768px) {
   .navbar-collapse {

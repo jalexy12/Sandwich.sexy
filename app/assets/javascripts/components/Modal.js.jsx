@@ -16,7 +16,8 @@ var Modal = React.createClass({
 
 	getInitialState: function () {
 		return {
-			visible: false
+			visible: false,
+			route: "sandwich"
 		};
 	},
 
@@ -107,25 +108,26 @@ var Modal = React.createClass({
 		this.setState({ visible: false });
 	},
 
+
 	render: function () {
 		var closeBtn = React.createElement('div', { className: "overlay-top" }, React.createElement('div', {
 			className: "overlay-close",
 			title: "Close",
 			onClick: this.handleCloseBtnClick
 		}, "×"));
+		var element;
 
 		if (this.props.closable === false) {
 			closeBtn = React.createElement('div');
 		}
-
+		
 		return (
 			React.createElement('div', {
 				className: "overlay"+ (this.state.visible ? "" : " hidden") + (this.props.className ? " "+ this.props.className : ""),
 				ref: "overlay",
 				onClick: this.handleOverlayClick
 			}, closeBtn,
-
-				React.createElement('div', { className: "overlay-content" }, this.props.children)));
+				React.createElement('div', { className: "overlay-content" }, this.props.view)));
 	}
 });
 

@@ -6,7 +6,7 @@ class PaginatorLink extends React.Component{
 
 	render(){
 		return(
-  				<span className="btn btn-primary page-button" onClick={this._handleOnClick.bind(this)}>{this.props.pageNumber}</span>
+				<li onClick={this._handleOnClick.bind(this)}><a href="#">{this.props.pageNumber}</a></li>
   				)
 	}
 }

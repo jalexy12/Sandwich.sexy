@@ -6,10 +6,9 @@ class Sandwich extends React.Component{
 
 	render(){
 		return(
-			<div className="text-center sandwich-wrapper col-sm-8">
-			    <div className="container heading-container">
-			    	<div className="row sandwich-nav-row">
-			    		<div className="col-sm-8 col-sm-offset-2 text-center">
+				<div className="container">
+			    	  <div className="row sandwich-nav-row">
+			    		<div className="col-sm-12 col-lg-8 col-lg-offset-2">
 			    			<button onClick={this.props.next} className="btn btn-primary btn-circle btn-like">
 			    			   <i className="fa fa-heart" styles="color:white;"></i>
 			    			</button>
@@ -19,15 +18,14 @@ class Sandwich extends React.Component{
 			    			<h3 className="sandwich-heading">
 			    			  {this.props.name}
 			    			</h3>
-			    			<button className="btn btn-default btn-circle btn-comment">
+			    			<button onClick={this.props.onComment} className="btn btn-default btn-circle btn-comment">
 			    			  <i className="fa fa-comment-o"></i>
 			    			</button>
 			    			<button className="btn btn-danger btn-circle">
 			    			  <i className="fa fa-close"></i>
 			    			</button>
 			    		</div>
-			    	</div>
-			    </div>
+			          </div>
 			    <div className="container">
 					<div className="row">
 					  <div className="col-sm-12 col-lg-6 col-lg-offset-3">
