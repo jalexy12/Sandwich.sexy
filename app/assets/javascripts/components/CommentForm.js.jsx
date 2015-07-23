@@ -13,7 +13,7 @@ var CommentForm = React.createClass({
       <div className="row">
         <form className="commentForm" onSubmit={this.handleSubmit}>
            <div className="form-group">
-            <input type="text" placeholder="Say something..." ref="text" />
+            <input type="text" className="form-control" placeholder="Say something..." ref="text" />
            </div>
             <input type="submit" value="Post" />
         </form>

@@ -6,7 +6,7 @@ class Sandwich extends React.Component{
 
 	render(){
 		return(
-				<div className="container">
+				<div className="contaner">
 			    	  <div className="row sandwich-nav-row">
 			    		<div className="col-sm-12 col-lg-8 col-lg-offset-2">
 			    			<button onClick={this.props.next} className="btn btn-primary btn-circle btn-like">
@@ -28,14 +28,16 @@ class Sandwich extends React.Component{
 			          </div>
 			    <div className="container">
 					<div className="row">
-					  <div className="col-sm-12 col-lg-6 col-lg-offset-3">
+					  <div className="col-sm-12 col-lg-6 col-lg-offset-2">
 						<img className="sandwich-image" src={this.props.sandwich_image} />
 					  </div>
 					</div>
 					<div className="row">
+					  <div className="col-lg-6 col-lg-offset-2">
 						<p className="center-align sandwich-description">
 						  {this.props.description}
 						</p>
+					  </div>
 					</div>
 				</div>
 			</div>
