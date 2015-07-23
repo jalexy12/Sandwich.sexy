@@ -15,6 +15,7 @@ class SandwichesController < ApplicationController
     InstagramSandwichJob.perform_later(last_sandwich, user.token)
     render :nothing => true
   end
+  
   def index
     @sandwiches = Sandwich.all.page(params[:page])
     @meta = {

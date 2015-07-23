@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   #resources
   resources :ingredients
-  resources :sandwiches
+  resources :sandwiches do 
+    resources :comments
+  end
   #instagram callbacks
   get '/challenge_callback' => "sandwiches#from_instagram"
   post '/challenge_callback' => "sandwiches#new_sandwich"

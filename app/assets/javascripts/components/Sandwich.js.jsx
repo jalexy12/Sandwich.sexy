@@ -26,20 +26,20 @@ class Sandwich extends React.Component{
 			    			</button>
 			    		</div>
 			          </div>
-			    <div className="container">
-					<div className="row">
-					  <div className="col-sm-12 col-lg-6 col-lg-offset-2">
-						<img className="sandwich-image" src={this.props.sandwich_image} />
-					  </div>
+				    <div className="container">
+						<div className="row">
+						  <div className="col-sm-12 col-lg-6 col-lg-offset-2">
+							<img className="sandwich-image" src={this.props.sandwich_image} />
+						  </div>
+						</div>
+						<div className="row">
+						  <div className="col-lg-6 col-lg-offset-2">
+							<p className="center-align sandwich-description">
+							  {this.props.description}
+							</p>
+						  </div>
+						</div>
 					</div>
-					<div className="row">
-					  <div className="col-lg-6 col-lg-offset-2">
-						<p className="center-align sandwich-description">
-						  {this.props.description}
-						</p>
-					  </div>
-					</div>
-				</div>
 			</div>
 			)
 	}

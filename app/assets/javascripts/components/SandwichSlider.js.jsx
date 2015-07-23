@@ -60,7 +60,7 @@ class SandwichSlider extends React.Component{
 		   		 />)
 						   		
 		}else{
-			return(<CommentBox url={'/sandwiches/' + sandwich.id + '/comments/'} onSandwichView={this.renderSandwich} pollInterval={3000} />)
+			return(<CommentBox url={'/sandwiches/' + sandwich.id + '/comments/'} pollInterval={3000} onSandwichView={this.renderSandwich} />)
 		}
 			  
 	}

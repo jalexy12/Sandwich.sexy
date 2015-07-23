@@ -15,7 +15,7 @@ var CommentBox = React.createClass({
   handleCommentSubmit: function(comment) {
     var comments = this.state.data;
     comments.push(comment);
-    this.setState({data: comments}, function() {
+    this.setState({data: comments}, function() { 
       $.ajax({
         url: this.props.url,
         dataType: 'json',
@@ -40,10 +40,10 @@ var CommentBox = React.createClass({
   render: function() {
     return (
       <div className="commentBox">
-        <button className="btn btn-primary" onClick={this.props.onSandwichView}><i className="fa fa-arrow-circle-left"></i></button>
+        <button className="btn btn-primary comment-back-button" onClick={this.props.onSandwichView}><i className="fa fa-arrow-circle-left"></i></button>
+        <CommentForm onCommentSubmit={this.handleCommentSubmit} />
         <h1>Comments</h1>
         <CommentList data={this.state.data} />
-        <CommentForm onCommentSubmit={this.handleCommentSubmit} />
       </div>
     );
   }
