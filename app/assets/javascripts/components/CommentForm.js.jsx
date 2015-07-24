@@ -15,7 +15,7 @@ var CommentForm = React.createClass({
            <div className="form-group">
             <input type="text" className="form-control" placeholder="Say something..." ref="text" />
            </div>
-            <input type="submit" value="Post" />
+            <input className="btn btn-default" type="submit" value="Post" />
         </form>
       </div>
     );

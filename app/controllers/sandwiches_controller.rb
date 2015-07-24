@@ -2,14 +2,11 @@ class SandwichesController < ApplicationController
   before_action      :set_sandwich, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
-  def home
-  end
-
-  def from_instagram
+  def instagram_challenge
     render json: params["hub.challenge"]
   end
 
-  def new_sandwich
+  def new_sandwich_from_instagram
     user = User.first
     last_sandwich = Sandwich.last.ig_id.to_s[0..18] 
     InstagramSandwichJob.perform_later(last_sandwich, user.token)

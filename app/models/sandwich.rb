@@ -3,6 +3,8 @@ class Sandwich < ActiveRecord::Base
     has_and_belongs_to_many :ingredients
     has_many :comments
     
+    searchkick
+    
     validates :description, uniqueness: true
     validates_attachment_content_type :sandwich_image, :content_type => /\Aimage\/.*\Z/
 

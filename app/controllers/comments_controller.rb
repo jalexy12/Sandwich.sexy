@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-	before_action :set_sandwich
+	before_action :set_sandwich, :
 
 	def index
 		comments = @sandwich.comments.all
@@ -23,10 +23,6 @@ class CommentsController < ApplicationController
 	end
 
 	private
-
-	# def comment_params
-	# 	params.
-	# end
 
 	def set_sandwich
 		@sandwich = Sandwich.find_by_id(params[:sandwich_id])
