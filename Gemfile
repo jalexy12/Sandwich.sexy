@@ -28,6 +28,7 @@ gem 'turbolinks'
 gem 'momentjs-rails'
 gem 'kaminari'
 gem "searchkick"
+gem 'twitter-typeahead-rails'
 
 
 gem 'jbuilder', '~> 2.0'
