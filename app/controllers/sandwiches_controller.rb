@@ -1,6 +1,9 @@
+require 'keyword_finder'
+
 class SandwichesController < ApplicationController
   before_action      :set_sandwich, only: [:edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
+  include Keywords
 
   def instagram_challenge
     render json: params["hub.challenge"]
@@ -14,14 +17,16 @@ class SandwichesController < ApplicationController
   end
   
   def index
-        @sandwiches = Sandwich.all.page(params[:page])
-        @meta = meta_for(@sandwiches)
+      @sandwiches = Sandwich.all.page(params[:page])
+      @meta = meta_for(@sandwiches)
   end
 
   def keywords
       sandwiches =  $redis.get("sandwich_keywords")
+      $redis.del("sandwich_keywords")
+
       if sandwiches.nil?
-        sandwiches = Sandwich.find_keywords.to_json
+        sandwiches = Keywords.find_keywords(Sandwich).to_json
         $redis.set("sandwich_keywords", sandwiches)
         $redis.expire("sandwich_keywords",3.hours.to_i)
       end
