@@ -30,21 +30,23 @@ class SandwichesController < ApplicationController
   end
 
   def search
-    sandwiches = $redis.get("sandwiches_#{params[:term]}_#{params[:page]}_sandwiches")
-    meta = $redis.get("sandwiches_#{params[:term]}_#{params[:page]}_meta")
-    $redis.del("sandwiches_#{params[:term]}_#{params[:page]}_sandwiches")
-    $redis.del("sandwiches_#{params[:term]}_#{params[:page]}_meta")
+    sandwich_key = redis_key_search_sandwiches(params[:term], params[:page])
+    meta_key = redis_key_search_meta(params[:term], params[:page])
+    sandwiches = $redis.get(sandwich_key)
+    meta = $redis.get(meta_key)
 
     if sandwiches.nil?
-      @sandwiches = Sandwich.search(params[:term], page: params[:page], per_page: 20)
+      @sandwiches = Sandwich.search(
+        params[:term], 
+        page: params[:page], 
+        per_page: 20)
       @meta = meta_for(@sandwiches)
-      $redis.set("sandwiches_#{params[:term]}_#{params[:page]}_meta", @meta.to_json)
-      $redis.set("sandwiches_#{params[:term]}_#{params[:page]}_sandwiches", @sandwiches.to_json(methods: [:sandwich_image_url]))
-      $redis.expire("sandwiches_#{params[:term]}_#{params[:page]}",1.hour.to_i)
+      $redis.set(meta_key, @meta.to_json)
+      $redis.set(sandwich_key, @sandwiches.to_json(methods: [:sandwich_image_url]))
+      expire_keys([meta_key, sandwich_key], 1.hour.to_i)
     else 
-      ap "GOT THE ELSE\N\N\N\N\N\N"
-      @meta = JSON.load(meta)
       @sandwiches = JSON.load(sandwiches)
+      @meta = JSON.load(meta)
     end
   end
 
@@ -90,6 +92,20 @@ class SandwichesController < ApplicationController
   end
 
   private
+
+    def redis_key_search_sandwiches(term, page)
+      "sandwiches_#{term}_#{page}_sandwiches"
+    end
+
+    def redis_key_search_meta(term, page)
+      "sandwiches_#{term}_#{page}_meta"
+    end
+
+    def expire_keys(keys, expiration_time)
+      keys.each do | key |
+        $redis.expire(key, expiration_time)
+      end
+    end
 
     def meta_for(sandwiches)
       return {
