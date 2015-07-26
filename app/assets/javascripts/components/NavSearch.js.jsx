@@ -1,12 +1,12 @@
-var NavSearch = React.createClass({
+class NavSearch extends React.Component{
 
-[]	handleChange: function(){
+	handleChange(){
 		this.props.onUserInput(
 	    	this.refs.searchInput.getDOMNode().value
 	    	)
-	},
+	}
 
-	render: function(){
+	render(){
 		return( 
 		   <nav className="row blue-grey">
 		    <div className="nav-wrapper">
@@ -26,4 +26,4 @@ var NavSearch = React.createClass({
 		    </div>
 		  </nav>)
 	}
-})
+}

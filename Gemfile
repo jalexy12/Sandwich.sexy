@@ -10,7 +10,7 @@ gem 'pg'
 gem 'puma'
 
 gem 'devise'
-gem 'react-rails', github: "reactjs/react-rails"
+gem 'react-rails'
 gem 'therubyracer'
 gem 'acts_as_votable'
 gem "paperclip", "~> 4.3"
@@ -29,6 +29,7 @@ gem 'momentjs-rails'
 gem 'kaminari'
 gem "searchkick"
 gem 'twitter-typeahead-rails'
+
 
 
 gem 'jbuilder', '~> 2.0'

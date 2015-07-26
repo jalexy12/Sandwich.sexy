@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-	before_action :set_sandwich, :
+	before_action :set_sandwich
 
 	def index
 		comments = @sandwich.comments.all

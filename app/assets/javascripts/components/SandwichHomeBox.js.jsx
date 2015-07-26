@@ -15,6 +15,7 @@ class SandwichHomeBox extends React.Component{
 			fetchData: {
 				page: 1,
 			},
+			keywords: []
 		}
 	}
 
@@ -39,6 +40,24 @@ class SandwichHomeBox extends React.Component{
 			didFetchData: true,
 			sandwiches: data.sandwiches, 
 			meta: data.meta
+		})
+	}
+
+	onOptionSelected(option, event){
+		
+	}
+
+	getSearchOptions(){
+		$.ajax({
+			url: '/sandwiches/keywords',
+			type: 'get',
+			data: this.state.fetchData,
+			success: (data) => {
+				this.setState({keywords: data})
+			},
+			error: () => {
+				console.log("Error")
+			}
 		})
 	}
 
@@ -71,13 +90,31 @@ class SandwichHomeBox extends React.Component{
 
 	componentDidMount() {
 		this.getSandwiches();
+		this.getSearchOptions();
 	}
 
 	render(){
+
 		return(
 			 <div>
-			 	<div className="row text-center">
-					<PaginatorSection totalPages={this.state.meta.total_pages} currentPage={this.state.meta.current_page} onPaginate={this.handleOnPaginate}/>
+			 	{/* <div className="row text-center">
+				 	<PaginatorSection totalPages={this.state.meta.total_pages} currentPage={this.state.meta.current_page} onPaginate={this.handleOnPaginate}/>
+				</div> */}
+				<div className="row">
+					  <div className="col-sm-6 col-sm-offset-3">
+						<Typeahead
+						    options={this.state.keywords}
+						    onOptionSelected={this.onOptionSelected}
+						    
+						    customClasses={{
+						    	input: "form-control",
+						    	results: "dropdown-list list-unstyled text-center col-sm-12 col-sm-offset-1",
+						    	listItem: "dropdown-list-item",
+						    	hover: "li-active"
+						    }}
+
+						  />
+						</div>
 				</div>
 				<div className="row home-sandwich text-center">
 				 {this.renderSandwiches()}

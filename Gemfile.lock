@@ -84,18 +84,6 @@ GIT
       thor (>= 0.18.1, < 2.0)
 
 GIT
-  remote: git://github.com/reactjs/react-rails.git
-  revision: 4dffbf9373de952a22f95697d9e6279f05b86f09
-  specs:
-    react-rails (1.1.0)
-      babel-transpiler (>= 0.7.0)
-      coffee-script-source (~> 1.8)
-      connection_pool
-      execjs
-      rails (>= 3.2)
-      tilt
-
-GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 935f53bb55ef736260fa2ef04e29da2fc3fb2b3f
   specs:
@@ -287,6 +275,13 @@ GEM
     rb-fsevent (0.9.5)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    react-rails (1.1.0)
+      babel-transpiler (>= 0.7.0)
+      coffee-script-source (~> 1.8)
+      connection_pool
+      execjs
+      rails (>= 3.2)
+      tilt
     redis (3.2.1)
     ref (2.0.0)
     responders (2.1.0)
@@ -383,7 +378,7 @@ DEPENDENCIES
   pg
   puma
   rails!
-  react-rails!
+  react-rails
   rspec-rails
   sass-rails (~> 5.0)
   searchkick

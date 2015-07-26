@@ -18,5 +18,6 @@
 //= require react_ujs
 //= require components
 //= require moment
-//= require twitter/typeahead.min
 //= require_tree .
+
+

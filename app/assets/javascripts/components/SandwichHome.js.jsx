@@ -36,14 +36,10 @@ class SandwichHome extends React.Component{
 				    commentBox={<CommentBox url={"/sandwiches/" + this.props.id + "/comments"} chagepollInterval={3000} />}
 				    onHide={ this.toggleModalVisibility.bind(this) }
 				    >
-				    <header>
-				    </header>
-				    <p>
-				    
-					</p>
 				</Modal>
 				</div>
 			</div>
 			)
 	}
 }
+

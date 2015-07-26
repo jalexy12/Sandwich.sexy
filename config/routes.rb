@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :sandwiches do 
     resources :comments
   end
+  #Sandwiches
+  get '/sandwiches/keywords' => "sandwiches#keywords"
   #instagram callbacks
   get '/challenge_callback' => "sandwiches#instagram_challenge"
   post '/challenge_callback' => "sandwiches#new_sandwich_from_instagram"

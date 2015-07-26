@@ -24,6 +24,11 @@ class SandwichesController < ApplicationController
       }
   end
 
+  def keywords
+    keywords = Sandwich.find_keywords
+    render json: keywords
+  end
+
   def show
   end
 
