@@ -1,5 +1,5 @@
 class SandwichesController < ApplicationController
-  before_action      :set_sandwich, only: [:show, :edit, :update, :destroy]
+  before_action      :set_sandwich, only: [:edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
   def instagram_challenge
@@ -29,7 +29,8 @@ class SandwichesController < ApplicationController
     render json: keywords
   end
 
-  def show
+  def search
+    @sandwiches = Sandwich.search(params[:term])
   end
 
   def new

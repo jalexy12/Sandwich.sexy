@@ -44,14 +44,27 @@ class SandwichHomeBox extends React.Component{
 	}
 
 	onOptionSelected(option, event){
-		
+		this.searchSandwiches(option)
+	}
+
+	searchSandwiches(term){
+		$.ajax({
+				url: '/sandwiches/search.json',
+				type: 'get',
+				data: {term: term},
+				success: (data) => {
+					this.setState({sandwiches: data.sandwiches})
+				},
+				error: () => {
+					console.log("Error")
+				}
+			})
 	}
 
 	getSearchOptions(){
 		$.ajax({
 			url: '/sandwiches/keywords',
 			type: 'get',
-			data: this.state.fetchData,
 			success: (data) => {
 				this.setState({keywords: data})
 			},
@@ -62,7 +75,6 @@ class SandwichHomeBox extends React.Component{
 	}
 
 	handleOnPaginate(pageNumber){
-		console.log(pageNumber)
 		this.state.fetchData.page = pageNumber
 		this.setState(this.state)
 		this.getSandwiches();
@@ -104,8 +116,8 @@ class SandwichHomeBox extends React.Component{
 					  <div className="col-sm-6 col-sm-offset-3">
 						<Typeahead
 						    options={this.state.keywords}
-						    onOptionSelected={this.onOptionSelected}
-						    
+						    onOptionSelected={this.onOptionSelected.bind(this)}
+						    maxVisible={10}
 						    customClasses={{
 						    	input: "form-control",
 						    	results: "dropdown-list list-unstyled text-center col-sm-12 col-sm-offset-1",

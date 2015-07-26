@@ -27,7 +27,7 @@ class Sandwich < ActiveRecord::Base
 	    new_keywords = []
 		keywords.each do | key, value |
 			if value > 20
-				new_keywords.push({key: "sandwich_tag", value: key})
+				new_keywords.push(key)
 			end
 		end
 		new_keywords

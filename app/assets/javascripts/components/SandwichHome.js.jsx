@@ -26,7 +26,6 @@ class SandwichHome extends React.Component{
 				<Modal
 				    visible={ this.state.modalIsShowing }
 				    closable={ true }
-				    // onShow={  }
 				    view={
 				    	 <SandwichSlider startingSandwich={this.props.id}
 				    				     currentPage={this.props.currentPage}
