@@ -51,9 +51,10 @@ class SandwichHomeBox extends React.Component{
 		$.ajax({
 				url: '/sandwiches/search.json',
 				type: 'get',
-				data: {term: term},
+				data: {term: term, page: this.state.fetchData.page},
 				success: (data) => {
-					this.setState({sandwiches: data.sandwiches})
+					console.log(data)
+					this.setState({sandwiches: data.sandwiches, meta: data.meta, didFetchData: true})
 				},
 				error: () => {
 					console.log("Error")
@@ -82,12 +83,13 @@ class SandwichHomeBox extends React.Component{
 
 	renderSandwiches(){
 		return this.state.sandwiches.map((sandwich) =>{
+			let image = sandwich.sandwich_image ? sandwich.sandwich_image : sandwich.sandwich_image_url
 			return (
 				<div>
 				   <SandwichHome 
 					key={sandwich.id}
 				    id={sandwich.id}
-				    sandwich_image={sandwich.sandwich_image}
+				    sandwich_image={image}
 				    description={sandwich.description}
 				    created_at={sandwich.created_at}
 				    sandwiches={this.state.sandwiches} 
@@ -109,9 +111,9 @@ class SandwichHomeBox extends React.Component{
 
 		return(
 			 <div>
-			 	{/* <div className="row text-center">
+			 	<div className="row text-center">
 				 	<PaginatorSection totalPages={this.state.meta.total_pages} currentPage={this.state.meta.current_page} onPaginate={this.handleOnPaginate}/>
-				</div> */}
+				</div>
 				<div className="row">
 					  <div className="col-sm-6 col-sm-offset-3">
 						<Typeahead

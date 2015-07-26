@@ -11,6 +11,11 @@ class Sandwich < ActiveRecord::Base
     paginates_per 20
     
     default_scope { order("created_at DESC") }
+
+    def sandwich_image_url
+    	self.sandwich_image
+    end
+
     def self.find_keywords
 	    keywords = {}
 	    banned_list = ["of", "and", "or", "the", "!", "as", "all", "its", "it's", "es", "un", "that", "&", "en", "y", "*", "if", "-", "at"]

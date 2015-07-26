@@ -14,19 +14,8 @@ class SandwichesController < ApplicationController
   end
   
   def index
-    @sandwiches =  $redis.get("sandwiches_#{params[:page]}")
-    if @sandwiches.nil?
-      @sandwiches = Sandwich.all.page(params[:page])
-      $redis.set("sandwich_#{params[:page]}", @sandwiches)
-      $redis.expire("sandwich_",1.hour.to_i)
-    end
-    @meta = {
-        :current_page => @sandwiches.current_page,
-        :next_page => @sandwiches.next_page,
-        :prev_page => @sandwiches.prev_page,
-        :total_pages => @sandwiches.total_pages,
-        :total_count => @sandwiches.total_count
-      }
+        @sandwiches = Sandwich.all.page(params[:page])
+        @meta = meta_for(@sandwiches)
   end
 
   def keywords
@@ -34,14 +23,29 @@ class SandwichesController < ApplicationController
       if sandwiches.nil?
         sandwiches = Sandwich.find_keywords.to_json
         $redis.set("sandwich_keywords", sandwiches)
-        $redis.expire("sandwich_keywords",3.hour.to_i)
+        $redis.expire("sandwich_keywords",3.hours.to_i)
       end
       @keywords = JSON.load sandwiches
       render json: @keywords
   end
 
   def search
-    @sandwiches = Sandwich.search(params[:term])
+    sandwiches = $redis.get("sandwiches_#{params[:term]}_#{params[:page]}_sandwiches")
+    meta = $redis.get("sandwiches_#{params[:term]}_#{params[:page]}_meta")
+    $redis.del("sandwiches_#{params[:term]}_#{params[:page]}_sandwiches")
+    $redis.del("sandwiches_#{params[:term]}_#{params[:page]}_meta")
+
+    if sandwiches.nil?
+      @sandwiches = Sandwich.search(params[:term], page: params[:page], per_page: 20)
+      @meta = meta_for(@sandwiches)
+      $redis.set("sandwiches_#{params[:term]}_#{params[:page]}_meta", @meta.to_json)
+      $redis.set("sandwiches_#{params[:term]}_#{params[:page]}_sandwiches", @sandwiches.to_json(methods: [:sandwich_image_url]))
+      $redis.expire("sandwiches_#{params[:term]}_#{params[:page]}",1.hour.to_i)
+    else 
+      ap "GOT THE ELSE\N\N\N\N\N\N"
+      @meta = JSON.load(meta)
+      @sandwiches = JSON.load(sandwiches)
+    end
   end
 
   def new
@@ -86,6 +90,16 @@ class SandwichesController < ApplicationController
   end
 
   private
+
+    def meta_for(sandwiches)
+      return {
+        current_page: sandwiches.current_page,
+        next_page: sandwiches.next_page,
+        prev_page: sandwiches.prev_page,
+        total_pages: sandwiches.total_pages,
+        total_count: sandwiches.total_count
+      }
+    end
 
     def set_sandwich
       @sandwich = Sandwich.find(params[:id])

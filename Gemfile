@@ -34,6 +34,7 @@ gem 'redis-store'
 gem 'redis-namespace'
 
 
+gem 'oj'
 
 
 gem 'jbuilder', '~> 2.0'
