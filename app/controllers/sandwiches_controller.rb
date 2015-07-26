@@ -14,7 +14,12 @@ class SandwichesController < ApplicationController
   end
   
   def index
-    @sandwiches = Sandwich.all.page(params[:page])
+    @sandwiches =  $redis.get("sandwiches_#{params[:page]}")
+    if @sandwiches.nil?
+      @sandwiches = Sandwich.all.page(params[:page])
+      $redis.set("sandwich_#{params[:page]}", @sandwiches)
+      $redis.expire("sandwich_",1.hour.to_i)
+    end
     @meta = {
         :current_page => @sandwiches.current_page,
         :next_page => @sandwiches.next_page,
@@ -29,7 +34,7 @@ class SandwichesController < ApplicationController
       if sandwiches.nil?
         sandwiches = Sandwich.find_keywords.to_json
         $redis.set("sandwich_keywords", sandwiches)
-        $redis.expire("sandwiche_keywords",3.hour.to_i)
+        $redis.expire("sandwich_keywords",3.hour.to_i)
       end
       @keywords = JSON.load sandwiches
       render json: @keywords
