@@ -30,6 +30,10 @@ gem 'kaminari'
 gem "searchkick"
 gem 'twitter-typeahead-rails'
 
+gem 'redis-store'
+gem 'redis-namespace'
+
+
 
 
 gem 'jbuilder', '~> 2.0'

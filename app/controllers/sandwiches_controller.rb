@@ -25,8 +25,14 @@ class SandwichesController < ApplicationController
   end
 
   def keywords
-    keywords = Sandwich.find_keywords
-    render json: keywords
+      sandwiches =  $redis.get("sandwich_keywords")
+      if sandwiches.nil?
+        sandwiches = Sandwich.find_keywords.to_json
+        $redis.set("sandwich_keywords", sandwiches)
+        $redis.expire("sandwiche_keywords",3.hour.to_i)
+      end
+      @keywords = JSON.load sandwiches
+      render json: @keywords
   end
 
   def search

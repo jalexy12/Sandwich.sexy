@@ -1,0 +1,1 @@
+$redis = Redis::Namespace.new("sandwiches", :redis => Redis.new)

@@ -283,6 +283,10 @@ GEM
       rails (>= 3.2)
       tilt
     redis (3.2.1)
+    redis-namespace (1.5.2)
+      redis (~> 3.0, >= 3.0.4)
+    redis-store (1.1.6)
+      redis (>= 2.2)
     ref (2.0.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
@@ -379,6 +383,8 @@ DEPENDENCIES
   puma
   rails!
   react-rails
+  redis-namespace
+  redis-store
   rspec-rails
   sass-rails (~> 5.0)
   searchkick
