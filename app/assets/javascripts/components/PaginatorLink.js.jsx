@@ -1,3 +1,5 @@
+'use strict'
+
 class PaginatorLink extends React.Component{
 	_handleOnClick(e){
 		e.preventDefault();

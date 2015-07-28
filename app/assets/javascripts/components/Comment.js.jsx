@@ -1,11 +1,11 @@
+'use strict'
+
 var Comment = React.createClass({
   render: function() {
     return (
-      <div className="comment">
-       	<p>
+      <li className="comment">
        		{this.props.comment}
-       	</p>
-      </div>
+      </li>
     );
   }
 });

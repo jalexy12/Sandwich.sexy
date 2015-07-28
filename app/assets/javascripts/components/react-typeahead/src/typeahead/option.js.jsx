@@ -1,6 +1,7 @@
 /**
  * A single option within the TypeaheadSelector
  */
+ 'use strict'
 
 var TypeaheadOption = React.createClass({
   propTypes: {

@@ -22,6 +22,7 @@ var CommentBox = React.createClass({
         type: 'POST',
         data: comment,
         success: function(data) {
+          console.log(data)
           this.setState({data: data});
         }.bind(this),
         error: function(xhr, status, err) {
@@ -35,15 +36,18 @@ var CommentBox = React.createClass({
   },
   componentDidMount: function() {
     this.loadCommentsFromServer();
-    setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+    // setInterval(this.loadCommentsFromServer, this.props.pollInterval);
   },
+
   render: function() {
     return (
-      <div className="commentBox">
-        <button className="btn btn-primary comment-back-button" onClick={this.props.onSandwichView}><i className="fa fa-arrow-circle-left"></i></button>
-        <CommentForm onCommentSubmit={this.handleCommentSubmit} />
-        <h1>Comments</h1>
-        <CommentList data={this.state.data} />
+      <div>
+        <div className="commentBox">
+          <CommentForm onCommentSubmit={this.handleCommentSubmit} />
+        </div>
+        <div className="comment-list">
+          <CommentList data={this.state.data} />
+        </div>
       </div>
     );
   }

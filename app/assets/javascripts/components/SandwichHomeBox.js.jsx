@@ -20,12 +20,13 @@ class SandwichHomeBox extends React.Component{
 	}
 
 	getSandwiches(){
-		console.log("fetchData", this.state.fetchData)
+		console.log("Called")
 		$.ajax({
 			url: '/sandwiches.json',
 			type: 'get',
 			data: this.state.fetchData,
 			success: (data) => {
+				console.log("Get sandwiches worked")
 				this.getSandwichesDone(data)
 			},
 			error: () => {
@@ -36,9 +37,10 @@ class SandwichHomeBox extends React.Component{
 	
 
 	getSandwichesDone(data){
+		var newSandwiches = this.state.sandwiches.concat(data.sandwiches)
 		this.setState({
 			didFetchData: true,
-			sandwiches: data.sandwiches, 
+			sandwiches: newSandwiches, 
 			meta: data.meta
 		})
 	}
@@ -53,7 +55,6 @@ class SandwichHomeBox extends React.Component{
 				type: 'get',
 				data: {term: term, page: this.state.fetchData.page},
 				success: (data) => {
-					console.log(data)
 					this.setState({sandwiches: data.sandwiches, meta: data.meta, didFetchData: true})
 				},
 				error: () => {
@@ -75,24 +76,26 @@ class SandwichHomeBox extends React.Component{
 		})
 	}
 
-	handleOnPaginate(pageNumber){
-		this.state.fetchData.page = pageNumber
+	handleOnPaginate(){
+		this.state.fetchData.page += 1
 		this.setState(this.state)
 		this.getSandwiches();
 	}
 
 	renderSandwiches(){
 		return this.state.sandwiches.map((sandwich) =>{
-			let image = sandwich.sandwich_image ? sandwich.sandwich_image : sandwich.sandwich_image_url
+		let image = sandwich.sandwich_image ? sandwich.sandwich_image : sandwich.sandwich_image_url
 			return (
 				<div>
-				   <SandwichHome 
+				   <SandwichSlider 
 					key={sandwich.id}
 				    id={sandwich.id}
 				    sandwich_image={image}
 				    description={sandwich.description}
+				    tags={sandwich.tags}
 				    created_at={sandwich.created_at}
 				    sandwiches={this.state.sandwiches} 
+				    startingSandwich={sandwich.id}
 				    totalPages={this.state.meta.total_pages}
 				    currentPage={this.state.meta.current_page}
 				    onPaginate={this.handleOnPaginate}
@@ -110,11 +113,9 @@ class SandwichHomeBox extends React.Component{
 	render(){
 
 		return(
-			 <div>
-			 	<div className="row text-center">
-				 	<PaginatorSection totalPages={this.state.meta.total_pages} currentPage={this.state.meta.current_page} onPaginate={this.handleOnPaginate}/>
-				</div>
+			 <div className="sandwich-header">
 				<div className="row">
+					<span className="glyphicon glyphicon-align-center"></span>
 					  <div className="col-sm-6 col-sm-offset-3">
 						<Typeahead
 						    options={this.state.keywords}
@@ -132,6 +133,9 @@ class SandwichHomeBox extends React.Component{
 				</div>
 				<div className="row home-sandwich text-center">
 				 {this.renderSandwiches()}
+				</div>
+				<div className="row next-page text-center">
+					<i onClick={this.handleOnPaginate} className="fa fa-arrow-down"></i>
 				</div>
 			</div>
 				

@@ -1,3 +1,5 @@
+'use strict'
+
 var CommentForm = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
@@ -15,7 +17,6 @@ var CommentForm = React.createClass({
            <div className="form-group">
             <input type="text" className="form-control" placeholder="Say something..." ref="text" />
            </div>
-            <input className="btn btn-default" type="submit" value="Post" />
         </form>
       </div>
     );

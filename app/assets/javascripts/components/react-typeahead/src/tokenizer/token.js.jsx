@@ -2,6 +2,8 @@
  * Encapsulates the rendering of an option that has been "selected" in a
  * TypeaheadTokenizer
  */
+ 'use strict'
+
 var Token = React.createClass({
   propTypes: {
     className: React.PropTypes.string,

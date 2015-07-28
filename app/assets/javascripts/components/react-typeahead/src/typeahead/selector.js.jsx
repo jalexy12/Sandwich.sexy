@@ -2,6 +2,8 @@
  * Container for the options rendered as part of the autocompletion process
  * of the typeahead
  */
+ 'use strict'
+
 var TypeaheadSelector = React.createClass({
   propTypes: {
     options: React.PropTypes.array,

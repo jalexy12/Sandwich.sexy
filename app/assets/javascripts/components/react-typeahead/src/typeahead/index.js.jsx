@@ -1,4 +1,6 @@
   //= require ./selector.js.jsx
+  'use strict'
+
 var IDENTITY_FN = function(input) { return input; };
 var _generateAccessor = function(field) {
   return function(object) { return object[field]; };
@@ -225,9 +227,9 @@ var Typeahead = React.createClass({
     }
 
     if (newIndex < 0) {
-      newIndex += length;
+      newIndex += length
     } else if (newIndex >= length) {
-      newIndex -= length;
+      newIndex -= length
     }
 
     this.setState({selectionIndex: newIndex});

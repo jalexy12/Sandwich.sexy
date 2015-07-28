@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723025157) do
+ActiveRecord::Schema.define(version: 20150726183410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,13 +43,14 @@ ActiveRecord::Schema.define(version: 20150723025157) do
   create_table "sandwiches", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "sandwich_image_file_name"
     t.string   "sandwich_image_content_type"
     t.integer  "sandwich_image_file_size"
     t.datetime "sandwich_image_updated_at"
     t.string   "ig_id"
+    t.text     "tags",                        default: [],              array: true
   end
 
   create_table "tag_infos", force: :cascade do |t|

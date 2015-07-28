@@ -2,12 +2,11 @@ class CommentsController < ApplicationController
 	before_action :set_sandwich
 
 	def index
-		comments = @sandwich.comments.all
-
+		@comments = @sandwich.comments
 		if !@sandwich
 			render status: 404,  json: "Sandwich not found"
 		else
-			render status: 200, json: comments
+			render status: 200, json: @comments
 		end
 	end
 

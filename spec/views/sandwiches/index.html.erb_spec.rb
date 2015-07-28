@@ -20,3 +20,5 @@ RSpec.describe "sandwiches/index", type: :view do
     assert_select "tr>td", :text => "MyText".to_s, :count => 2
   end
 end
+
+

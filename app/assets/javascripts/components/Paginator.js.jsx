@@ -1,3 +1,5 @@
+'use strict'
+
 class PaginatorSection extends React.Component{
   handleOnClick(pageNumber){
       this.props.onPaginate(pageNumber)

@@ -10,11 +10,12 @@ gem 'pg'
 gem 'puma'
 
 gem 'devise'
-gem 'react-rails'
+gem 'react-rails', github: 'reactjs/react-rails'
 gem 'therubyracer'
 gem 'acts_as_votable'
 gem "paperclip", "~> 4.3"
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
 gem "font-awesome-rails"
 gem 'omniauth'
 gem 'omniauth-instagram'
@@ -25,10 +26,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', github: "rails/coffee-rails"
 gem 'turbolinks'
-gem 'momentjs-rails'
 gem 'kaminari'
 gem "searchkick"
-gem 'twitter-typeahead-rails'
 
 gem 'redis-store'
 gem 'redis-namespace'
@@ -55,6 +54,10 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails'
+
+  gem "better_errors"
+
+  gem 'binding_of_caller'
 
 end
 

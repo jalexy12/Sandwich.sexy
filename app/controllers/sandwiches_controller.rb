@@ -11,14 +11,15 @@ class SandwichesController < ApplicationController
 
   def new_sandwich_from_instagram
     user = User.first
-    last_sandwich = Sandwich.last.ig_id.to_s[0..18] 
-    InstagramSandwichJob.perform_later(last_sandwich, user.token)
+    # last_sandwich = Sandwich.last.ig_id.to_s[0..18] 
+    InstagramSandwichJob.perform_later(user.token)
     render :nothing => true
   end
   
   def index
       @sandwiches = Sandwich.all.page(params[:page])
       @meta = meta_for(@sandwiches)
+      puts @meta
   end
 
   def keywords
@@ -28,31 +29,18 @@ class SandwichesController < ApplicationController
       if sandwiches.nil?
         sandwiches = Keywords.find_keywords(Sandwich).to_json
         $redis.set("sandwich_keywords", sandwiches)
-        $redis.expire("sandwich_keywords",3.hours.to_i)
+        $redis.expire("sandwich_keywords", 1.hour.to_i)
       end
       @keywords = JSON.load sandwiches
       render json: @keywords
   end
 
   def search
-    sandwich_key = redis_key_search_sandwiches(params[:term], params[:page])
-    meta_key = redis_key_search_meta(params[:term], params[:page])
-    sandwiches = $redis.get(sandwich_key)
-    meta = $redis.get(meta_key)
-
-    if sandwiches.nil?
-      @sandwiches = Sandwich.search(
+    @sandwiches = Sandwich.search(
         params[:term], 
         page: params[:page], 
         per_page: 20)
-      @meta = meta_for(@sandwiches)
-      $redis.set(meta_key, @meta.to_json)
-      $redis.set(sandwich_key, @sandwiches.to_json(methods: [:sandwich_image_url]))
-      expire_keys([meta_key, sandwich_key], 1.hour.to_i)
-    else 
-      @sandwiches = JSON.load(sandwiches)
-      @meta = JSON.load(meta)
-    end
+    @meta = meta_for(@sandwiches)
   end
 
   def new
