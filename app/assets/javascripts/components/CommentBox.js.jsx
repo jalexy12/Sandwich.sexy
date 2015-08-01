@@ -36,7 +36,7 @@ var CommentBox = React.createClass({
   },
 
   renderComments: function(){
-    if (this.state.data.length <= 10){
+    if (this.state.data.length <= 6){
       return( 
         <div className="comment-list">
           <CommentList data={this.state.data} />

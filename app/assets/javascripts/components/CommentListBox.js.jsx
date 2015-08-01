@@ -1,21 +1,28 @@
 'use strict'
 class CommentListBox extends React.Component {
 	constructor(props){
-		console.log(props)
 		super()
 		this.state = {
 			currentMin: 0,
-			currentMax: 9,
-			paginateBy: 10,
+			currentMax: 6,
+			paginateBy: 6,
 		}
+
 	}
+	checkIsLastPage(){
+		this.setState({ isLastPage: this.state.currentMax < this.props.data.length - this.state.paginateBy ? false : true})
+	}
+
 	nextPage(){
 		let paginateBy = this.state.paginateBy;
-		if (this.state.currentMax <= this.props.data.length){
+		if (!this.state.isLastPage){
 			this.setState({ currentMin: this.state.currentMin + paginateBy, currentMax: this.state.currentMax + paginateBy })
-		}else{
-			return
+			this.checkIsLastPage()
 		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.checkIsLastPage()
 	}
 
 	render(){
@@ -24,12 +31,18 @@ class CommentListBox extends React.Component {
 		let commentNodes = paginatedComments.map((comment) =>{
 			return <Comment author={comment.author} comment={comment.comment} />
 		})
+		var button;
+		if (!this.state.isLastPage){
+			button = <button onClick={this.nextPage.bind(this)} className="btn btn-primary more-button">More</button>
+		}else{
+			button = null
+		}
 		return(
 			  <div>
 				<ul className="list-unstyled">
 					{commentNodes}
 				</ul>
-				<button onClick={this.nextPage.bind(this)} className="btn btn-primary">More</button>
+				{button}
 			</div>
 			)
 	}

@@ -110,6 +110,8 @@ class SandwichHomeBox extends React.Component{
 	}
 
 	render(){
+		console.log("Current page", this.state.meta.current_page)
+		console.log("Total page", this.state.meta.total_pages)
 
 		return(
 			 <div className="sandwich-header">
@@ -131,9 +133,13 @@ class SandwichHomeBox extends React.Component{
 				<div className="row home-sandwich text-center">
 				 {this.renderSandwiches()}
 				</div>
-				<div className="row next-page text-center">
-					<i onClick={this.handleOnPaginate} className="fa fa-arrow-down"></i>
-				</div>
+				{this.state.meta.current_page < this.state.meta.total_pages ? 
+					<div className="row next-page text-center">
+						<i onClick={this.handleOnPaginate} className="fa fa-arrow-down"></i>
+					</div>
+					: 
+					null
+				}
 			</div>
 				
 			)
