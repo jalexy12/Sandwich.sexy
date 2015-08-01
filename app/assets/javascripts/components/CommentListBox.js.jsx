@@ -4,8 +4,6 @@ class CommentListBox extends React.Component {
 		console.log(props)
 		super()
 		this.state = {
-			comments: props.comments,
-			lengthOfComments: props.comments.length,
 			currentMin: 0,
 			currentMax: 9,
 			paginateBy: 10,
@@ -13,7 +11,7 @@ class CommentListBox extends React.Component {
 	}
 	nextPage(){
 		let paginateBy = this.state.paginateBy;
-		if (this.state.currentMax + paginateBy <= this.state.lengthOfComments){
+		if (this.state.currentMax <= this.props.data.length){
 			this.setState({ currentMin: this.state.currentMin + paginateBy, currentMax: this.state.currentMax + paginateBy })
 		}else{
 			return
@@ -21,10 +19,10 @@ class CommentListBox extends React.Component {
 	}
 
 	render(){
-		let paginatedComments = this.state.comments.slice(this.state.currentMin, this.state.currentMax)
+		let paginatedComments = this.props.data.slice(this.state.currentMin, this.state.currentMax)
 		let paginateBy = this.state.paginateBy
 		let commentNodes = paginatedComments.map((comment) =>{
-			return comment
+			return <Comment author={comment.author} comment={comment.comment} />
 		})
 		return(
 			  <div>

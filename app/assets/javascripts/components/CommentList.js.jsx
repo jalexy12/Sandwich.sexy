@@ -2,21 +2,14 @@ var CommentList = React.createClass({
   render: function() {
     var commentNodes = this.props.data.map(function(comment, index) {
       return (
-        <Comment key={index} comment={comment.comment} >
+        <Comment key={index} author={comment.author} comment={comment.comment} >
         </Comment>
       );
     });
-      if (commentNodes.length <= 10){
-        return (
-          <ul className="list-unstyled commentList">
-            {commentNodes}
-          </ul>
-        );
-      }else{
-        return(
-            <CommentListBox comments={commentNodes} />
-          )
-      }
-    
+    return(
+      <ul className="list-unstyled commentList">
+        {commentNodes}
+      </ul>
+    )
   }
 });
