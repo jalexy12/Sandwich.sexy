@@ -19,7 +19,10 @@ class SandwichesController < ApplicationController
   def index
       @sandwiches = Sandwich.all.page(params[:page])
       @meta = meta_for(@sandwiches)
-      puts @meta
+      render json: {
+                    sandwiches: @sandwiches.as_json(:methods => :sandwich_image_url),
+                    meta: @meta
+                   }
   end
 
   def keywords

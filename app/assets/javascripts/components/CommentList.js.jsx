@@ -1,6 +1,5 @@
 var CommentList = React.createClass({
   render: function() {
-    console.log(this.props.data)
     var commentNodes = this.props.data.map(function(comment, index) {
       return (
         <Comment key={index} comment={comment.comment} >

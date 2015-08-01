@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
-
+<%= form_tag("/index", method: "get") do  %>
+ <%= select_tag(:sandwich_id, options_from_collection_for_select(Sandwich.all, :id, :description)) %>
+ <%= submit_tag("Search") %>
+<% end %>
 <h1>Listing Sandwiches</h1>
 
 <table>

@@ -3,23 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .btn-circle {
-  width: 8%;
-  height: 47px;
-  margin-left: 3%;
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1.4em;
   border-radius: 60%;
+  margin-left: 1%;
 }
 
 .btn-comment{
   background-color: black;
   color: white;
-  margin-right: 3%;
 }
 
-.btn-share{
-  margin-left: 3%;
-}
 .comment{
   font-size: 1.4rem;
 }
@@ -27,10 +21,6 @@
   position: absolute;
   top: 13%;
   right: 5%;
-}
-
-.sandwich-slider-home{
-  margin-bottom: 3%;
 }
 
 .heading-container{
@@ -45,23 +35,12 @@
 
 }
 
- .home-sandwich-box{
-     margin-bottom: 2%; 
-     margin-top: 2%;
- }
 .sandwich-description{
   height: 5vh;
   font-size: 1.0rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-.home-sandwich-image{
-    width: 60%;
-    height: 300px;
-}
-.home-sandwich-image-row{
-  margin-bottom: 2%;
 }
 
 .next-page{
@@ -71,56 +50,24 @@
   margin-right: 0;
 }
 
-.numberCircle {
-    border-radius: 50%;
-    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
-    padding: 8px;
-    background: #fff;
-    border: 2px solid black;
-    color: black;
-    font: 32px Arial, sans-serif;
-    display: inline-block;
-}
-
 .sandwich-image{
-  width: 75%;
-	height: 100%;
 	max-height: 321px;
-  z-index: 1;
+  width: 100%;
+  z-index: 0;
 }
 
 .sandwich-image-wrapper{
   position: relative;
 }
 
-.image-overlay{
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.9);
-  width: 72%;
-  height: 40px;
-  bottom: 0;
-  left: 14%;
-  z-index: 2;
-  color: #FFF;
-  font-size: 1.2rem;
-}
-
 .imagebox-text{
   z-index: 5;
   padding-top: 2%;
 }
-.sandwich-nav-row *{
-  display: inline;
-  margin-bottom: 2%;
-  margin-top: 1%;
-}
 
-.sandwich-heading{
-  font-size: 2em;
-  margin-left: 12%;
-  margin-right: 12%;
+.sandwich-box{
+  margin-top: 5%; 
 }
-
 .sandwich-header{
     margin-top: 3%;
 }
@@ -135,21 +82,24 @@
 .navbar-heading{
 	font-size: 1.2em;
 }
-.no-button{
-	width: 100%;
-}
-
-.yes-button{
-	width: 100%;
-}
 
 .sandwich-description{
   margin-top: 2%;
 	font-size: 1.2em;
 }
 
+.sandwich-image-wrapper{
+  margin-top: 2%;
+  margin-bottom: 2%;
+  position: relative;
+}
 
-
+.nav-wrapper{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+}
 @media (min-width: 768px) {
   .navbar-collapse {
     height: auto;
@@ -191,14 +141,8 @@
 
 @media only screen and (max-width: 767px) {
 
-  .image-overlay{
-    height: 25%;
-    width: 70%;
-    left: 15%;
-    bottom: -24%;
-  }
   .sandwich-nav-row{
-    margin-top: 20%;
+    margin-top: 15%;
   }
 
   .btn-circle{

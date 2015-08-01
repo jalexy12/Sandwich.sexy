@@ -11,7 +11,6 @@ class CommentsController < ApplicationController
 	end
 
 	def create
-		ap params
 		comment = @sandwich.comments.new(comment: params[:text], author_id: current_user.id)
 
 		if comment.save

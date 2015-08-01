@@ -22,11 +22,10 @@ class SandwichHomeBox extends React.Component{
 	getSandwiches(){
 		console.log("Called")
 		$.ajax({
-			url: '/sandwiches.json',
+			url: '/sandwiches',
 			type: 'get',
 			data: this.state.fetchData,
 			success: (data) => {
-				console.log("Get sandwiches worked")
 				this.getSandwichesDone(data)
 			},
 			error: () => {
@@ -87,7 +86,7 @@ class SandwichHomeBox extends React.Component{
 		let image = sandwich.sandwich_image ? sandwich.sandwich_image : sandwich.sandwich_image_url
 			return (
 				<div>
-				   <SandwichSlider 
+				   <Sandwich
 					key={sandwich.id}
 				    id={sandwich.id}
 				    sandwich_image={image}
@@ -115,21 +114,19 @@ class SandwichHomeBox extends React.Component{
 		return(
 			 <div className="sandwich-header">
 				<div className="row">
-					<span className="glyphicon glyphicon-align-center"></span>
-					  <div className="col-sm-6 col-sm-offset-3">
-						<Typeahead
-						    options={this.state.keywords}
-						    onOptionSelected={this.onOptionSelected.bind(this)}
-						    maxVisible={10}
-						    customClasses={{
-						    	input: "form-control",
-						    	results: "dropdown-list list-unstyled text-center col-sm-12 col-sm-offset-1",
-						    	listItem: "dropdown-list-item",
-						    	hover: "li-active"
-						    }}
-
-						  />
-						</div>
+				  <div className="col-sm-6 col-sm-offset-3">
+					<Typeahead
+					    options={this.state.keywords}
+					    onOptionSelected={this.onOptionSelected.bind(this)}
+					    maxVisible={10}
+					    customClasses={{
+					    	input: "form-control",
+					    	results: "dropdown-list list-unstyled text-center col-sm-12 col-sm-offset-1",
+					    	listItem: "dropdown-list-item",
+					    	hover: "li-active"
+					    }}
+					  />
+					</div>
 				</div>
 				<div className="row home-sandwich text-center">
 				 {this.renderSandwiches()}

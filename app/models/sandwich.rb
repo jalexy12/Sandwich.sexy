@@ -13,7 +13,7 @@ class Sandwich < ActiveRecord::Base
     default_scope { order("created_at DESC") }
 
     def sandwich_image_url
-    	self.sandwich_image
+    	self.sandwich_image.url(:medium)
     end
 
 end
