@@ -81,14 +81,12 @@ class Sandwich extends React.Component{
 	  		         onHide={ this.renderSandwich }
 	  		         view={<SandwichModalView 
 	  		         		commentBox={
-	  		         			<CommentBox url={"/sandwiches/" + this.props.id + "/comments"} />}
+	  		         			<CommentBox url={"/sandwiches/" + this.props.id + "/comments"} id={this.props.id} />}
 	  		         			sandwich_image={this.props.sandwich_image}
-	  		         		/> }
-	  		        >
+	  		         		/> }>
 	  		         <header>
 	  		             <h1>Your Modal</h1>
 	  		         </header>
-
 	  		         <p>Hello there</p>
 	  		     </Modal>
 	  		   </div>

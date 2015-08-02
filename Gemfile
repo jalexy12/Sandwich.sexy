@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-ruby "2.2.0"
+
+ruby "2.2.2"
 
 gem 'rails', github: "rails/rails"
 gem 'sprockets-rails'
@@ -29,6 +30,8 @@ gem 'coffee-rails', github: "rails/coffee-rails"
 gem 'turbolinks'
 gem 'kaminari'
 gem "searchkick"
+gem 'daemons'
+
 
 gem 'redis-store'
 gem 'redis-namespace'
@@ -41,25 +44,14 @@ gem 'jbuilder', '~> 2.0'
 
 group :development, :test do
   gem 'byebug'
-
   gem 'guard'
-
   gem 'awesome_print'
-
   gem 'guard-livereload', '~> 2.4', require: false
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
   gem 'rspec-rails'
-
   gem "better_errors"
-
   gem 'binding_of_caller'
-
 end
 
 group :production do 

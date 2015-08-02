@@ -117,6 +117,7 @@ class SandwichHomeBox extends React.Component{
 		return(
 			 <div className="sandwich-header">
 				<div className="row">
+				  <div className="col-sm-6 col-sm-offset-3">
 					<Typeahead
 					    options={this.state.keywords}
 					    onOptionSelected={this.onOptionSelected.bind(this)}

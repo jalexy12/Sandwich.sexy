@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150726183410) do
     t.integer  "sandwich_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["sandwich_id"], name: "index_comments_on_sandwich_id", using: :btree
+    # t.index ["sandwich_id"], name: "index_comments_on_sandwich_id", using: :btree
   end
 
   create_table "ingredients", force: :cascade do |t|

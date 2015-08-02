@@ -1,6 +1,9 @@
 class PagesController < ApplicationController
-  def home
+  def home 
+  	ActionCable.server.broadcast('Test', fuck: "fuck")
   end
-  def test
+
+  def test 
+
   end
 end

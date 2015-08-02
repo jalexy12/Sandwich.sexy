@@ -15,7 +15,7 @@ Devise.setup do |config|
   #      -F 'object=tag' \
   #      -F 'aspect=media' \
   #      -F 'object_id=sandwich' \
-  #      -F 'callback_url=http://3a425bb1.ngrok.com/challenge_callback' \
+  #      -F 'callback_url= http://6400ce75.ngrok.com/challenge_callback' \
   #      https://api.instagram.com/v1/subscriptions
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,

@@ -1,0 +1,2 @@
+module Sandwiches::LikesHelper
+end

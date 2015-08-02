@@ -26,6 +26,7 @@ class CommentListBox extends React.Component {
 	}
 
 	render(){
+		console.log(this.props.data)
 		let paginatedComments = this.props.data.slice(this.state.currentMin, this.state.currentMax)
 		let paginateBy = this.state.paginateBy
 		let commentNodes = paginatedComments.map((comment) =>{

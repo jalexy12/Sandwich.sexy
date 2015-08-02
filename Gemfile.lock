@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/rails/actioncable.git
-  revision: f94531a5e91184dee5d82a03949926a33a78556b
+  revision: af34e9b0e7763e088d0c288670c03dafecc3f37f
   specs:
-    actioncable (0.1.0)
+    actioncable (0.0.3)
       actionpack (>= 4.2.0)
       activesupport (>= 4.2.0)
       celluloid (~> 0.16.0)
@@ -140,6 +140,7 @@ GEM
     commonjs (0.2.7)
     concurrent-ruby (0.9.0)
     connection_pool (2.2.0)
+    daemons (1.2.2)
     debug_inspector (0.0.2)
     devise (3.5.1)
       bcrypt (~> 3.0)
@@ -377,6 +378,7 @@ DEPENDENCIES
   binding_of_caller
   byebug
   coffee-rails!
+  daemons
   devise
   font-awesome-rails
   guard
